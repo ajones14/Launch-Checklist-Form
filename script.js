@@ -28,8 +28,37 @@ function init () {
          window.alert("Please enter a valid cargo weight!");
          preventDefault(event);
       }
+
+      let faultyItems = document.getElementById("faultyItems");
+      let pilotStatus = document.getElementById("pilotStatus");
+      let copilotStatus = document.getElementById("copilotStatus");
+      let fuelStatus = document.getElementById("fuelStatus");
+      let cargoStatus = document.getElementById("cargoStatus");
+      let launchStatus = document.getElementById("launchStatus");
+
+      if (fuelLevel.value < 10000 || cargoWeight.value > 10000) {
+         faultyItems.style.visibility = "visible";
+         launchStatus.innerHTML = "Shuttle not ready for launch";
+         launchStatus.style.color = "red";
+         pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready for launch.`;
+         copilotStatus.innerHTML = `Copilot ${copilotName.value} is ready for launch.`;
+         if (fuelLevel.value < 10000 && cargoWeight.value > 10000) {
+            fuelStatus.innerHTML = "Fuel level too low for launch.";
+            cargoStatus.innerHTML = "Cargo mass too high for launch.";
+         } else if (fuelLevel.value < 10000) {
+            fuelStatus.innerHTML = "Fuel level too low for launch.";
+            cargoStatus.innerHTML = "Cargo mass low enough for launch.";
+         } else if (cargoWeight.value > 10000) {
+            fuelStatus.innerHTML = "Fuel level high enough for launch.";
+            cargoStatus.innerHTML = "Cargo mass too high for launch.";
+         } 
+      } else {
+         launchStatus.style.color = "green";
+         launchStatus.innerHTML = "Shuttle is ready for launch";
+      }
       
    });
+   
 }
 
 window.onload = init
