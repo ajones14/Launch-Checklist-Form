@@ -15,6 +15,20 @@ function init () {
             preventDefault(event);
          }
       }
+      if (!isNaN(pilotName.value)) {
+         window.alert("Please enter a valid pilot name!");
+         preventDefault(event);
+      } else if (!isNaN(copilotName.value)) {
+         window.alert("Please enter a valid copilot name!");
+         preventDefault(event);
+      } else if (isNaN(fuelLevel.value)) {
+         window.alert("Please enter a valid fuel level!");
+         preventDefault(event);
+      } else if (isNaN(cargoWeight.value)) {
+         window.alert("Please enter a valid cargo weight!");
+         preventDefault(event);
+      }
+      
    });
 }
 
